@@ -1,0 +1,27 @@
+apiVersion: v2
+
+name: xray
+
+description: A Helm charts for deploying XRay to Kubernetes.
+
+type: application
+
+version: 0.1.0
+
+appVersion: 1.3.0
+
+maintainers:
+  - email: varroreve@gmail.com
+    name: Varro Reve
+
+home: https://github.com/VarroReve/xray-helm-charts
+
+icon: https://www.v2fly.org/v2ray.png
+
+sources:
+  - https://github.com/VarroReve/xray-helm-charts
+
+keywords:
+  - xray
+  - v2ray
+  - v2fly
