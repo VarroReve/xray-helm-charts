@@ -80,14 +80,21 @@ tolerations: []
 
 affinity: {}
 
-volumes:
-  - configMap:
-      defaultMode: 420
-      items:
-        - key: config.json
-          path: config.json
-      name: xray
-    name: xray-conf
+##
+## TLS configuration
+##
+tls:
+  # Enable TLS traffic
+  enabled: false
+  #
+  # Name of the Secret that contains the certificates
+  certificatesSecret:
+  #
+  # Certificate filename
+  certFilename:
+  #
+  # Certificate Key filename
+  certKeyFilename:
 
 configmap: |-
   {

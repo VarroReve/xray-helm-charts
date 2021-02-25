@@ -47,7 +47,10 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
             - mountPath: /etc/xray/
-              name: xray-conf
+              name: xray-config
+            - mountPath: /etc/xray/
+              name: xray-tls
+              readOnly: true
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -60,7 +63,22 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.volumes }}
       volumes:
-        {{- toYaml . | nindent 8 }}
+        - name: xray-config
+          configMap:
+              name: xray-config
+              defaultMode: 420
+              items:
+                - key: config.json
+                  path: config.json
+      {{- if .Values.tls.enabled }}
+        - name: xray-tls
+          secret:
+            defaultMode: 420
+            secretName: {{ .Values.tls.certificatesSecret }}
+            items:
+              - key: tls.crt
+                path: {{ .Values.tls.certificatesSecret }}
+              - key: tls.key
+                path: {{ .Values.tls.certKeyFilename }}
       {{- end }}

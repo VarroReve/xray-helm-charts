@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "xray.fullname" . }}
+  name: {{ template "xray.fullname" . }}-config
   namespace: {{ .Release.Namespace | quote }}
   labels:
     app: {{ template "xray.name" . }}
