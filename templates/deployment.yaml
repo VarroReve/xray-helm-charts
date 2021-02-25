@@ -48,7 +48,7 @@ spec:
           volumeMounts:
             - mountPath: /etc/xray/
               name: xray-config
-            - mountPath: /etc/xray/
+            - mountPath: /etc/xray/tls
               name: xray-tls
               readOnly: true
       {{- with .Values.nodeSelector }}
@@ -78,7 +78,7 @@ spec:
             secretName: {{ .Values.tls.certificatesSecret }}
             items:
               - key: tls.crt
-                path: {{ .Values.tls.certificatesSecret }}
+                path: {{ .Values.tls.certFilename }}
               - key: tls.key
                 path: {{ .Values.tls.certKeyFilename }}
       {{- end }}
