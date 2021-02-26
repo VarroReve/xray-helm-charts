@@ -48,9 +48,11 @@ spec:
           volumeMounts:
             - mountPath: /etc/xray/
               name: xray-config
+          {{- if .Values.tls.enabled }}
             - mountPath: /etc/xray/tls
               name: xray-tls
               readOnly: true
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

@@ -98,59 +98,15 @@ tls:
 
 configmap: |-
   {
-    "inbounds": [{
-      "port": 443,
-      "protocol": "vless",
-      "settings": {
-        "clients": [
-          {
-            "id": "xxxxxxx-xxxx-xx-xx-xxxx",
-            "flow": "xtls-rprx-direct",
-            "level": 0
-          }
-        ],
-        "decryption": "none",
-        "fallbacks": [
-          {
-            "alpn": "http/1.1",
-            "dest": 80
-          },
-          {
-            "alpn": "h2",
-            "dest": 81
-          }
-        ]
-      },
-      "streamSettings": {
-        "network": "tcp",
-        "security": "xtls",
-        "xtlsSettings": {
-          "serverName": "chart-example.local",
-          "alpn": ["http/1.1", "h2"],
-          "certificates": [
-            {
-              "certificateFile": "/etc/xray/tls/xray.pem",
-              "keyFile": "/etc/xray/tls/xray.key"
-            }
-          ]
-        }
-      }
-    }],
-    "outbounds": [{
-      "protocol": "freedom",
-      "settings": {}
-    },{
-      "protocol": "blackhole",
-      "settings": {},
-      "tag": "blocked"
-    }],
-    "routing": {
-      "rules": [
-        {
-          "type": "field",
-          "ip": ["geoip:private"],
-          "outboundTag": "blocked"
-        }
-      ]
-    }
+    "log": {},
+    "api": {},
+    "dns": {},
+    "routing": {},
+    "policy": {},
+    "inbounds": [],
+    "outbounds": [],
+    "transport": {},
+    "stats": {},
+    "reverse": {},
+    "fakedns": {}
   }
